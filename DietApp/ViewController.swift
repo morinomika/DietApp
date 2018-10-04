@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toGraph") {
-            let graphView = segue.destination as! ViewController
+            let graphView = segue.destination as! GraphViewController
             graphView.weight = self.weight
         }
     }
