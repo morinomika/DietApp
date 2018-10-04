@@ -48,7 +48,6 @@ class ViewController: UIViewController {
             realm.add(weight, update: true)
         }
         
-        
         //画面遷移して前の画面に戻る
         self.dismiss(animated: true, completion: nil)
 
