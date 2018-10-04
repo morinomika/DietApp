@@ -11,7 +11,7 @@ import RealmSwift
 
 class Weight: Object {
     @objc dynamic var date = ""
-    @objc dynamic var weight = 0
+    @objc dynamic var weight: Double = 0.0
     
 //    override static func primaryKey() -> String? {
 //        return "date"
