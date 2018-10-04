@@ -13,7 +13,7 @@ class Weight: Object {
     @objc dynamic var date = ""
     @objc dynamic var weight = 0
     
-    override static func primaryKey() -> String? {
-        return "date"
-    }
+//    override static func primaryKey() -> String? {
+//        return "date"
+//    }
 }

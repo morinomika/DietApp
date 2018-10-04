@@ -10,15 +10,43 @@ import UIKit
 import RealmSwift
 
 class ViewController: UIViewController {
+    @IBOutlet var weightText: UITextField!
     let weightData = Weight() // Weightというモデルをインスタンス化
+    var date: String!
+    var weight: Double!
+    var weightTmp: String!
+    @IBOutlet var dateLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        weightData.date = "a"
-        weightData.weight = 20
-        self.save();
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dateLabel.text = date
+    }
+    
+    
+    
+    @IBAction func next(_ sender: UIButton) {
+        weightTmp = weightText.text//追加
+        weight = Double(weightTmp)!
+
+        self.performSegue(withIdentifier: "toGraph", sender: nil)
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toGraph") {
+            let graphView = segue.destination as! ViewController
+            graphView.weight = self.weight
+        }
+    }
+}
+/*
+    
     
     // データを保存するための処理
     func save() {
@@ -35,3 +63,4 @@ class ViewController: UIViewController {
 
 }
 
+ */
