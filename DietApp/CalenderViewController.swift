@@ -14,6 +14,13 @@ import Foundation
 
 class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     @IBOutlet var datePicker: JBDatePickerView!
+    let today = Date()
+    var yesterday: Date!
+    var daybeforeYesterday: Date!
+    
+    var yesterdayWeight: Double?
+    var daybeforeYesterdayWeight: Double?
+    
     var date: Date!
     var dateData: Date!
     var dateDataWeight: Double!
@@ -39,54 +46,67 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         // Realmに保存されてるWeight型のオブジェクトを全て取得
         let weights = realm.objects(Weight.self)
         print(weights)
+        print (today)
+        yesterday = today.daysAgo(1)
+        daybeforeYesterday = yesterday.daysAgo(1)
+        print (yesterday)
+        print (daybeforeYesterday)
         
-
     }
 
     
     // select the cell
     func didSelectDay(_ dayView: JBDatePickerDayView) {
         print("date selected: \(dateFormatter.string(from: dayView.date!))")
-//        date = dateFormatter.string(from: dayView.date!) //追加
         dateData = dayView.date
         print("今日\(dateData)")
-        
-
-        dateDataYesterday = dateData.daysAgo(1)
-        print("昨日\(dateDataYesterday)")
-        
-        dateDataWeight = Weight.select(from: dateData)
-        print(dateDataWeight)
-        
-        dateDataYesterdayWeight = Weight.select(from: dateDataYesterday)
-        print(dateDataYesterdayWeight)
+//
+//
+//        dateDataYesterday = dateData.daysAgo(1)
+//        print("昨日\(dateDataYesterday)")
+//
+//        dateDataWeight = Weight.select(from: dateData)!
+//
+//        if (dateDataWeight != nil){
+//            print(dateDataWeight)
+//        }
+//
+//        do{
+//        try dateDataYesterdayWeight = Weight.select(from: dateDataYesterday)
+//        print(dateDataYesterdayWeight)
+//        } catch{
+//            print("error")
+//        }
 
     }
-//    let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-//    lazy var date = calendar.dateByAddingUnit(.Day, value: -10, toDate: dateData, options: NSCalendar.Options())!
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         datePicker.updateLayout()
     }
-    
-    var colorForSelelectedDayLabel: UIColor{
-        if (dateDataWeight >= dateDataYesterdayWeight) {
-            return UIColor.blue
-        }else if(dateDataWeight <= dateDataYesterdayWeight){
-            return UIColor.red
-        }else {
+
+    var colorForDayLabelInMonth: UIColor{
+        yesterdayWeight = Weight.select(from: yesterday)
+        daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday)
+        
+        if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
+            if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
+                return UIColor.blue
+            }else if(yesterdayWeight! <= daybeforeYesterdayWeight!){
+                return UIColor.red
+            }else {
+                return UIColor.black
+            }
+        }else{
             return UIColor.black
         }
-        
+        return UIColor.black
     }
     
-//    var colorForDayLabelInMonth: UIColor {
-//        if
-//        return UIColor of choice
-//
-//    }
+
+
     @IBAction func next(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toWeight", sender: dateData)
     }
@@ -98,14 +118,6 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
             view.date = sender as? Date
         }
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

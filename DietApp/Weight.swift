@@ -49,18 +49,6 @@ class Weight: Object {
         }
     }
     
- 
-//    static func loadAll() -> [Weight] {
-//        let users = realm.objects(Weight.self).sorted(byKeyPath: "id", ascending: false)
-//        var ret: [Weight] = []
-//        for user in users {
-//            ret.append(user)
-//        }
-//        return ret
-//    }
-//    
-
-
     static func select(from day: Date) -> Double? {
         let result = realm.objects(Weight.self).filter("date == %@", day)
         return result[0].weight
