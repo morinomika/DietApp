@@ -11,6 +11,7 @@ import RealmSwift
 import RealmSwift
 import Realm
 
+//2画面目
 class ViewController: UIViewController {
     @IBOutlet var weightText: UITextField!
     var date: Date!
@@ -44,12 +45,11 @@ class ViewController: UIViewController {
 
         self.performSegue(withIdentifier: "toGraph", sender: nil)
         
+        //はるふさんのやり方でrealmに保存
         let weight = Weight.create()
-        print("4")
         weight.date = date
         weight.weight = weightNum
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-
         weight.save()
             
         

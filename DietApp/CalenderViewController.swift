@@ -12,20 +12,22 @@ import RealmSwift
 import Realm
 import Foundation
 
+//初めの画面
 class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     @IBOutlet var datePicker: JBDatePickerView!
+    
+    //当日，昨日，その前日のdate/weight
     let today = Date()
     var yesterday: Date!
     var daybeforeYesterday: Date!
-    
-    var yesterdayWeight: Double?
-    var daybeforeYesterdayWeight: Double?
+    var yesterdayWeight: Double!
+    var daybeforeYesterdayWeight: Double!
     
     var date: Date!
     var dateData: Date!
-    var dateDataWeight: Double!
-    var dateDataYesterday: Date!
-    var dateDataYesterdayWeight: Double!
+//    var dateDataWeight: Double!
+//    var dateDataYesterday: Date!
+//    var dateDataYesterdayWeight: Double!
 
     lazy var dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
@@ -36,9 +38,7 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        datePicker.delegate = self //この行を追加
+        datePicker.delegate = self
         
         // Realmのインスタンスを取得
         let realm = try! Realm()
@@ -47,6 +47,8 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         let weights = realm.objects(Weight.self)
         print(weights)
         print (today)
+        
+        //当日，昨日，その前日のdate
         yesterday = today.daysAgo(1)
         daybeforeYesterday = yesterday.daysAgo(1)
         print (yesterday)
@@ -86,11 +88,17 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         
         datePicker.updateLayout()
     }
-
+    
+//カレンダーの数字の色を変える（その日とその日の前の日のweightを比べる）
     var colorForDayLabelInMonth: UIColor{
+        //（当日，）昨日，その前日のweight
+        var yesterdayWeight: Double?
+        var daybeforeYesterdayWeight: Double?
+        
+        //doubleがはいる．ここでバグる
         yesterdayWeight = Weight.select(from: yesterday)
         daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday)
-        
+
         if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
             if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
                 return UIColor.blue
@@ -100,11 +108,11 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
                 return UIColor.black
             }
         }else{
-            return UIColor.black
+            return UIColor.purple
         }
-        return UIColor.black
+        return UIColor.orange
     }
-    
+
 
 
     @IBAction func next(_ sender: UIButton) {
