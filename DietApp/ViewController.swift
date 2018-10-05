@@ -8,14 +8,23 @@
 
 import UIKit
 import RealmSwift
+import RealmSwift
+import Realm
 
 class ViewController: UIViewController {
     @IBOutlet var weightText: UITextField!
-    let weightData = Weight() // Weightというモデルをインスタンス化
-    var date: String!
+    var date: Date!
     var weightNum: Double!
     var weightTmp: String!
+    var dateLabelText: String!
     @IBOutlet var dateLabel: UILabel!
+    
+    lazy var dateFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .medium
+        return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,36 +33,27 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dateLabel.text = date
+        dateLabelText = dateFormatter.string(from: date!)
+        dateLabel.text = dateLabelText
     }
-    
     
     
     @IBAction func next(_ sender: UIButton) {
-        weightTmp = weightText.text//追加
-        weightNum = Double(weightTmp)!
+        weightTmp = weightText.text
+        weightNum = Double(weightTmp)
 
         self.performSegue(withIdentifier: "toGraph", sender: nil)
         
-        // STEP.1 Realmを初期化
-        let realm = try! Realm()
-        
-        //STEP.2 保存する要素を書く
-        let weight = Weight()
+        let weight = Weight.create()
+        print("4")
         weight.date = date
         weight.weight = weightNum
-        
-        //STEP.3 Realmに書き込み
-        try! realm.write {
-            realm.add(weight, update: true)
-        }
-        
-        //画面遷移して前の画面に戻る
-        self.dismiss(animated: true, completion: nil)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
+        weight.save()
+            
+        
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toGraph") {
@@ -61,23 +61,6 @@ class ViewController: UIViewController {
             graphView.weight = self.weightNum
         }
     }
-}
-/*
     
-    
-    // データを保存するための処理
-    func save() {
-        do {
-            let realm = try Realm()  // Realmのインスタンスを作成します。
-            try realm.write {
-                realm.add(self.weightData)  // 作成した「realm」というインスタンスにrealmDataを書き込みます。
-            }
-        } catch {
-            
-        }
-    }
-
-
 }
 
- */

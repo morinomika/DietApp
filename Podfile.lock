@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.2.0):
+    - Charts/Core (= 3.2.0)
+  - Charts/Core (3.2.0)
   - JBDatePicker (1.2.5)
   - Realm (3.10.0):
     - Realm/Headers (= 3.10.0)
@@ -7,20 +10,23 @@ PODS:
     - Realm (= 3.10.0)
 
 DEPENDENCIES:
+  - Charts
   - JBDatePicker
   - RealmSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Charts
     - JBDatePicker
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
+  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   JBDatePicker: 0e791c8a79c49b0d37decea28ba147515bf5cfca
   Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
   RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
 
-PODFILE CHECKSUM: c6abf334edcc553510d918c455fc445166ad90d3
+PODFILE CHECKSUM: 0b2d0038be7ea833b245dc5bbf2426e6c33d2a26
 
 COCOAPODS: 1.5.3

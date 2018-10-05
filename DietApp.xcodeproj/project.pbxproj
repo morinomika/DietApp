@@ -17,6 +17,7 @@
 		2B6DEB5E216309F600888175 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB5D216309F600888175 /* Weight.swift */; };
 		2B6DEB602163407F00888175 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB5F2163407F00888175 /* CalenderViewController.swift */; };
 		2B6DEB622165EAAC00888175 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB612165EAAC00888175 /* GraphViewController.swift */; };
+		2B6DEB642167810C00888175 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB632167810C00888175 /* Data+.swift */; };
 		9657AF126406459CA3FB2942 /* Pods_DietApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5189F32052451C96BC62D7 /* Pods_DietApp.framework */; };
 		9AB8FE1C4765D711298BAE57 /* Pods_DietAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D0C73092A511C4C55E8CE /* Pods_DietAppTests.framework */; };
 		FA374D4918B0F440EC690171 /* Pods_DietAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0633F2CED82B88D8B7E6564 /* Pods_DietAppUITests.framework */; };
@@ -58,6 +59,7 @@
 		2B6DEB5D216309F600888175 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		2B6DEB5F2163407F00888175 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		2B6DEB612165EAAC00888175 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		2B6DEB632167810C00888175 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		3A5189F32052451C96BC62D7 /* Pods_DietApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FFE6CAB4BD2A416F162EF0 /* Pods-DietAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietAppUITests/Pods-DietAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		97C6BF37FABF9557E03252D2 /* Pods-DietAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietAppTests/Pods-DietAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				2B6DEB5D216309F600888175 /* Weight.swift */,
 				2B6DEB5F2163407F00888175 /* CalenderViewController.swift */,
 				2B6DEB612165EAAC00888175 /* GraphViewController.swift */,
+				2B6DEB632167810C00888175 /* Data+.swift */,
 			);
 			path = DietApp;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DietApp/Pods-DietApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/JBDatePicker/JBDatePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -322,6 +326,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JBDatePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -407,6 +412,7 @@
 				2B6DEB602163407F00888175 /* CalenderViewController.swift in Sources */,
 				2B6DEB622165EAAC00888175 /* GraphViewController.swift in Sources */,
 				2B6DEB322162F69800888175 /* ViewController.swift in Sources */,
+				2B6DEB642167810C00888175 /* Data+.swift in Sources */,
 				2B6DEB302162F69800888175 /* AppDelegate.swift in Sources */,
 				2B6DEB5E216309F600888175 /* Weight.swift in Sources */,
 			);
