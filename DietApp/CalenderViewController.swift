@@ -15,29 +15,33 @@ import Foundation
 //初めの画面
 class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     @IBOutlet var datePicker: JBDatePickerView!
+    // カレンダーを取得
+    let  calendar = Calendar(identifier: .gregorian)
     
     //当日，昨日，その前日のdate/weight
     var today = Date()
     var yesterday: Date!
     var daybeforeYesterday: Date!
+    
     var yesterdayWeight: Double!
     var daybeforeYesterdayWeight: Double!
     
     var color: UIColor = .purple
     
-    
     var date: Date!
     var dateData: Date!
-//    var dateDataWeight: Double!
-//    var dateDataYesterday: Date!
-//    var dateDataYesterdayWeight: Double!
 
     lazy var dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
-//        formatter.timeStyle = .none
+        formatter.timeStyle = .none
         formatter.dateStyle = .medium
         return formatter
     }()
+    
+    //時間以降切り捨て
+    func roundDate(_ date: Date, calendar cal: Calendar) -> Date {
+        return cal.date(from: DateComponents(year: cal.component(.year, from: date), month: cal.component(.month, from: date), day: cal.component(.day, from: date)))!
+    }
     
     
     override func viewDidLoad() {
@@ -51,39 +55,25 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         // Realmに保存されてるWeight型のオブジェクトを全て取得
         let weights = realm.objects(Weight.self)
         print(weights)
-        print (today)
+        // today_dateから年月日のみ抽出する -> 2017/07/12となる
+        let today_date_rounded =  roundDate(today, calendar: calendar)
+        print("aaaa\(today_date_rounded)")
         
         //当日，昨日，その前日のdate
         yesterday = today.daysAgo(1)
         daybeforeYesterday = yesterday.daysAgo(1)
-        print (yesterday)
-        print (daybeforeYesterday)
+        
+        // today_dateから年月日のみ抽出する -> 2017/07/12となる
+        let yesterday_date_rounded =  roundDate(yesterday, calendar: calendar)
+        let daybeforeYesterday_date_rounded =  roundDate(daybeforeYesterday, calendar: calendar)
+        
+        print (yesterday_date_rounded)
+        print (daybeforeYesterday_date_rounded)
         
         changeColor()
+
         
-        
-        
-//        var changeColor(_ color: UIColor){
-//            //（当日，）昨日，その前日のweight
-//            var yesterdayWeight: Double?
-//            var daybeforeYesterdayWeight: Double?
-//
-//            //doubleがはいる．ここでバグる
-//            yesterdayWeight = Weight.select(from: yesterday)
-//            daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday)
-//
-//            if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
-//                if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
-//                    return .blue
-//                }else if(yesterdayWeight! < daybeforeYesterdayWeight!){
-//                    return .red
-//                }else {
-//                    return .black
-//                }
-//            }else{
-//                return .purple
-//            }
-//        }
+
         
     }
     
@@ -91,7 +81,6 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         //（当日，）昨日，その前日のweight
         var yesterdayWeight: Results<Weight>?
         var daybeforeYesterdayWeight: Results<Weight>?
-        print(yesterday)
         print("yesterdayWeight\(yesterdayWeight)")
         
 //        //doubleがはいる．ここでバグ
@@ -139,38 +128,17 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         datePicker.updateLayout()
     }
     
-////カレンダーの数字の色を変える（その日とその日の前の日のweightを比べる）
+    //カレンダーの数字の色を変える（その日とその日の前の日のweightを比べる）
     var colorForDayLabelInMonth: UIColor{
-//        //（当日，）昨日，その前日のweight
-//        var yesterdayWeight: Double?
-//        var daybeforeYesterdayWeight: Double?
-//        //doubleがはいる．ここでバグ
-//        yesterdayWeight = Weight.select(from: yesterday)
-//        daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday)
-//        if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
-//            if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
-//                return .blue
-//            }else if(yesterdayWeight! < daybeforeYesterdayWeight!){
-//                return .red
-//            }else {
-//                return .black
-//            }
-//        }else{
-//            return .purple
-//        }
         return .purple
     }
-
-
 
     @IBAction func next(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toWeight", sender: dateData)
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toWeight") {

@@ -49,8 +49,8 @@ class Weight: Object {
         }
     }
     //date型をわたしたらdoubleで帰ってくる
-    static func select(from today: Date) -> Results<Weight> {
-        let result = realm.objects(Weight.self).filter("date == %@", today)
+    static func select(from today_date_rounded: Date) -> Results<Weight> {
+        let result = realm.objects(Weight.self).filter("date == %@", today_date_rounded)
         print("select \(result)")
         return result
     }
