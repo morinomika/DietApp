@@ -23,6 +23,11 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     var yesterday: Date!
     var daybeforeYesterday: Date!
     
+    var today_date_rounded: Date!
+    var yesterday_date_rounded: Date!
+    var daybeforeYesterday_date_rounded: Date!
+
+    
     var yesterdayWeight: Double!
     var daybeforeYesterdayWeight: Double!
     
@@ -56,7 +61,7 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         let weights = realm.objects(Weight.self)
         print(weights)
         // today_dateから年月日のみ抽出する -> 2017/07/12となる
-        let today_date_rounded =  roundDate(today, calendar: calendar)
+        today_date_rounded =  roundDate(today, calendar: calendar)
         print("aaaa\(today_date_rounded)")
         
         //当日，昨日，その前日のdate
@@ -64,8 +69,8 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         daybeforeYesterday = yesterday.daysAgo(1)
         
         // today_dateから年月日のみ抽出する -> 2017/07/12となる
-        let yesterday_date_rounded =  roundDate(yesterday, calendar: calendar)
-        let daybeforeYesterday_date_rounded =  roundDate(daybeforeYesterday, calendar: calendar)
+        yesterday_date_rounded =  roundDate(yesterday, calendar: calendar)
+        daybeforeYesterday_date_rounded =  roundDate(daybeforeYesterday, calendar: calendar)
         
         print (yesterday_date_rounded)
         print (daybeforeYesterday_date_rounded)
@@ -83,9 +88,9 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         var daybeforeYesterdayWeight: Results<Weight>?
         print("yesterdayWeight\(yesterdayWeight)")
         
-//        //doubleがはいる．ここでバグ
-//        yesterdayWeight = Weight.select(from: today)
-//        daybeforeYesterdayWeight = Weight.select(from: today)
+        //doubleがはいる．ここでバグ
+        yesterdayWeight = Weight.select(from: yesterday_date_rounded)
+        daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday_date_rounded)
 //        if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
 //            if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
 //                return .blue
@@ -105,23 +110,6 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         print("date selected: \(dateFormatter.string(from: dayView.date!))")
         dateData = dayView.date
         print("今日\(dateData)")
-//
-//
-//        dateDataYesterday = dateData.daysAgo(1)
-//        print("昨日\(dateDataYesterday)")
-//
-//        dateDataWeight = Weight.select(from: dateData)!
-//
-//        if (dateDataWeight != nil){
-//            print(dateDataWeight)
-//        }
-//
-//        do{
-//        try dateDataYesterdayWeight = Weight.select(from: dateDataYesterday)
-//        print(dateDataYesterdayWeight)
-//        } catch{
-//            print("error")
-//        }
 
     }
 
