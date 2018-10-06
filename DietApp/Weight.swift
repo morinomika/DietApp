@@ -49,9 +49,10 @@ class Weight: Object {
         }
     }
     //date型をわたしたらdoubleで帰ってくる
-    static func select(from day: Date) -> Double? {
-        let result = realm.objects(Weight.self).filter("date == %@", day)
-        return result[0].weight
+    static func select(from today: Date) -> Results<Weight> {
+        let result = realm.objects(Weight.self).filter("date == %@", today)
+        print("select \(result)")
+        return result
     }
     
     

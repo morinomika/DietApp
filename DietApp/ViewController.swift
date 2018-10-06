@@ -14,7 +14,7 @@ import Realm
 //2画面目
 class ViewController: UIViewController {
     @IBOutlet var weightText: UITextField!
-    var date: Date!
+    var date: Date = Date()
     var weightNum: Double!
     var weightTmp: String!
     var dateLabelText: String!
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dateLabelText = dateFormatter.string(from: date!)
+        dateLabelText = dateFormatter.string(from: date)
         dateLabel.text = dateLabelText
     }
     
