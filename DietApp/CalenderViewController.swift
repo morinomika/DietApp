@@ -16,8 +16,7 @@ import Foundation
 class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     @IBOutlet var datePicker: JBDatePickerView!
     // カレンダーを取得
-    let  calendar = Calendar(identifier: .gregorian)
-    
+    var calendar = Calendar(identifier: .gregorian)
     //当日，昨日，その前日のdate/weight
     var today = Date()
     var yesterday: Date!
@@ -27,17 +26,18 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     var yesterday_date_rounded: Date!
     var daybeforeYesterday_date_rounded: Date!
 
-    
     var yesterdayWeight: Double!
     var daybeforeYesterdayWeight: Double!
     
-    var color: UIColor = .purple
+    var color: UIColor = .black
     
+    //押した日付
     var date: Date!
     var dateData: Date!
 
     lazy var dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         return formatter
@@ -48,10 +48,11 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         return cal.date(from: DateComponents(year: cal.component(.year, from: date), month: cal.component(.month, from: date), day: cal.component(.day, from: date)))!
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.delegate = self
+        
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
         
         // Realmのインスタンスを取得
         let realm = try! Realm()
@@ -60,60 +61,73 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         // Realmに保存されてるWeight型のオブジェクトを全て取得
         let weights = realm.objects(Weight.self)
         print(weights)
+
         // today_dateから年月日のみ抽出する -> 2017/07/12となる
         today_date_rounded =  roundDate(today, calendar: calendar)
-        print("aaaa\(today_date_rounded)")
+        print("today\(today_date_rounded)")
         
         //当日，昨日，その前日のdate
         yesterday = today.daysAgo(1)
         daybeforeYesterday = yesterday.daysAgo(1)
-        
+
         // today_dateから年月日のみ抽出する -> 2017/07/12となる
-        yesterday_date_rounded =  roundDate(yesterday, calendar: calendar)
-        daybeforeYesterday_date_rounded =  roundDate(daybeforeYesterday, calendar: calendar)
-        
-        print (yesterday_date_rounded)
-        print (daybeforeYesterday_date_rounded)
-        
+        yesterday_date_rounded = roundDate(yesterday, calendar: calendar)
+        daybeforeYesterday_date_rounded = roundDate(daybeforeYesterday, calendar: calendar)
+
+        print ("yesterday\(yesterday_date_rounded)")
+        print ("2daysbefoew\(daybeforeYesterday_date_rounded)")
+
+//        if yesterday_date_rounded >= daybeforeYesterday_date_rounded {
+//            self.view.backgroundColor = UIColor.cyan
+//        } else if yesterday_date_rounded < daybeforeYesterday_date_rounded {
+//            self.view.backgroundColor = UIColor.darkGray
+//        }
         changeColor()
-
-        
-
-        
     }
     
     func changeColor() -> UIColor?{
         //（当日，）昨日，その前日のweight
-        var yesterdayWeight: Results<Weight>?
-        var daybeforeYesterdayWeight: Results<Weight>?
+        var yesterdayWeight: Double?
+        var daybeforeYesterdayWeight: Double?
         print("yesterdayWeight\(yesterdayWeight)")
-        
+
         //doubleがはいる．ここでバグ
         yesterdayWeight = Weight.select(from: yesterday_date_rounded)
-        daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday_date_rounded)
-//        if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
-//            if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
-//                return .blue
-//            }else if(yesterdayWeight! < daybeforeYesterdayWeight!){
-//                return .red
-//            }else {
-//                return .black
-//            }
-//        }else{
-            return .purple
-        
-    }
+        print(yesterdayWeight)
+        var weightYest: Double!
 
+        daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday_date_rounded)
+        print("yesterdayweight")
+        print(yesterdayWeight)
+        print("yesterdayweight2")
+        print(daybeforeYesterdayWeight)
+        
+        if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
+            self.view.backgroundColor = UIColor.cyan
+        } else if (yesterdayWeight! < daybeforeYesterdayWeight!) {
+            self.view.backgroundColor = UIColor.darkGray
+        }
+        
+        if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
+            if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
+                return .blue
+            }else if(yesterdayWeight! < daybeforeYesterdayWeight!){
+                return .red
+            }else {
+                return .black
+            }
+        }else{
+            return .black
+        }
+    }
     
     // select the cell
     func didSelectDay(_ dayView: JBDatePickerDayView) {
         print("date selected: \(dateFormatter.string(from: dayView.date!))")
         dateData = dayView.date
         print("今日\(dateData)")
-
     }
 
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         datePicker.updateLayout()
@@ -121,7 +135,8 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     
     //カレンダーの数字の色を変える（その日とその日の前の日のweightを比べる）
     var colorForDayLabelInMonth: UIColor{
-        return .purple
+        return color
+        
     }
 
     @IBAction func next(_ sender: UIButton) {
@@ -135,6 +150,16 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
             
         }
     }
-
-
+    
+    ///Color of the 'today' date label text
+    var colorForCurrentDay: UIColor {
+        return color
+        
+    }
+    
+    ///Color of any label text that is selected
+    var colorForSelelectedDayLabel: UIColor {
+        return color
+        
+    }
 }
