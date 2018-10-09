@@ -13,12 +13,19 @@ import Realm
 
 //2画面目
 class ViewController: UIViewController {
+    @IBOutlet var waterButton1: UIButton!
+    @IBOutlet var waterButton2: UIButton!
+    @IBOutlet var waterButton3: UIButton!
+    @IBOutlet var waterButton4: UIButton!
+    
     @IBOutlet var weightText: UITextField!
     var date: Date = Date()
     var weightNum: Double!
     var weightTmp: String!
     var dateLabelText: String!
     @IBOutlet var dateLabel: UILabel!
+    
+    let image:UIImage = UIImage(named:"full")!
     
     lazy var dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
@@ -51,8 +58,20 @@ class ViewController: UIViewController {
         weight.weight = weightNum
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         weight.save()
-            
         
+    }
+    
+    @IBAction func water1(_ sender: UIButton) {
+        waterButton1.setImage(image , for: .normal)
+    }
+    @IBAction func water2(_ sender: UIButton) {
+        waterButton2.setImage(image , for: .normal)
+    }
+    @IBAction func water3(_ sender: UIButton) {
+        waterButton3.setImage(image , for: .normal)
+    }
+    @IBAction func water4(_ sender: UIButton) {
+        waterButton4.setImage(image , for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

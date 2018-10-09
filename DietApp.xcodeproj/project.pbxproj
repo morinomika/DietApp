@@ -18,6 +18,10 @@
 		2B6DEB602163407F00888175 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB5F2163407F00888175 /* CalenderViewController.swift */; };
 		2B6DEB622165EAAC00888175 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB612165EAAC00888175 /* GraphViewController.swift */; };
 		2B6DEB642167810C00888175 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DEB632167810C00888175 /* Data+.swift */; };
+		2B6DEB66216C29C500888175 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DEB65216C29C500888175 /* save.png */; };
+		2B6DEB69216C2A4900888175 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DEB67216C2A4800888175 /* empty.png */; };
+		2B6DEB6A216C2A4900888175 /* full.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B6DEB68216C2A4800888175 /* full.png */; };
+		2BD2F214216C324D00A4507F /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD2F213216C324D00A4507F /* UIColor+.swift */; };
 		9657AF126406459CA3FB2942 /* Pods_DietApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5189F32052451C96BC62D7 /* Pods_DietApp.framework */; };
 		9AB8FE1C4765D711298BAE57 /* Pods_DietAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D0C73092A511C4C55E8CE /* Pods_DietAppTests.framework */; };
 		FA374D4918B0F440EC690171 /* Pods_DietAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0633F2CED82B88D8B7E6564 /* Pods_DietAppUITests.framework */; };
@@ -60,6 +64,10 @@
 		2B6DEB5F2163407F00888175 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		2B6DEB612165EAAC00888175 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		2B6DEB632167810C00888175 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		2B6DEB65216C29C500888175 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		2B6DEB67216C2A4800888175 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
+		2B6DEB68216C2A4800888175 /* full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full.png; sourceTree = "<group>"; };
+		2BD2F213216C324D00A4507F /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3A5189F32052451C96BC62D7 /* Pods_DietApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FFE6CAB4BD2A416F162EF0 /* Pods-DietAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DietAppUITests/Pods-DietAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		97C6BF37FABF9557E03252D2 /* Pods-DietAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DietAppTests/Pods-DietAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +130,9 @@
 		2B6DEB2E2162F69800888175 /* DietApp */ = {
 			isa = PBXGroup;
 			children = (
+				2B6DEB67216C2A4800888175 /* empty.png */,
+				2B6DEB68216C2A4800888175 /* full.png */,
+				2B6DEB65216C29C500888175 /* save.png */,
 				2B6DEB2F2162F69800888175 /* AppDelegate.swift */,
 				2B6DEB312162F69800888175 /* ViewController.swift */,
 				2B6DEB332162F69800888175 /* Main.storyboard */,
@@ -132,6 +143,7 @@
 				2B6DEB5F2163407F00888175 /* CalenderViewController.swift */,
 				2B6DEB612165EAAC00888175 /* GraphViewController.swift */,
 				2B6DEB632167810C00888175 /* Data+.swift */,
+				2BD2F213216C324D00A4507F /* UIColor+.swift */,
 			);
 			path = DietApp;
 			sourceTree = "<group>";
@@ -287,6 +299,9 @@
 			files = (
 				2B6DEB3A2162F69A00888175 /* LaunchScreen.storyboard in Resources */,
 				2B6DEB372162F69A00888175 /* Assets.xcassets in Resources */,
+				2B6DEB6A216C2A4900888175 /* full.png in Resources */,
+				2B6DEB69216C2A4900888175 /* empty.png in Resources */,
+				2B6DEB66216C29C500888175 /* save.png in Resources */,
 				2B6DEB352162F69800888175 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +430,7 @@
 				2B6DEB642167810C00888175 /* Data+.swift in Sources */,
 				2B6DEB302162F69800888175 /* AppDelegate.swift in Sources */,
 				2B6DEB5E216309F600888175 /* Weight.swift in Sources */,
+				2BD2F214216C324D00A4507F /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
