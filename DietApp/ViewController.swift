@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet var waterButton3: UIButton!
     @IBOutlet var waterButton4: UIButton!
     
+    var waterCount: Int!
+    
     @IBOutlet var weightText: UITextField!
     var date: Date = Date()
     var weightNum: Double!
@@ -56,22 +58,32 @@ class ViewController: UIViewController {
         let weight = Weight.create()
         weight.date = date
         weight.weight = weightNum
+        weight.water = waterCount
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         weight.save()
-        
     }
     
     @IBAction func water1(_ sender: UIButton) {
         waterButton1.setImage(image , for: .normal)
+        waterCount = 1
     }
     @IBAction func water2(_ sender: UIButton) {
+        waterButton1.setImage(image , for: .normal)
         waterButton2.setImage(image , for: .normal)
+        waterCount = 2
     }
     @IBAction func water3(_ sender: UIButton) {
+        waterButton1.setImage(image , for: .normal)
+        waterButton2.setImage(image , for: .normal)
         waterButton3.setImage(image , for: .normal)
+        waterCount = 3
     }
     @IBAction func water4(_ sender: UIButton) {
+        waterButton1.setImage(image , for: .normal)
+        waterButton2.setImage(image , for: .normal)
+        waterButton3.setImage(image , for: .normal)
         waterButton4.setImage(image , for: .normal)
+        waterCount = 4
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

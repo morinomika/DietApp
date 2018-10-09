@@ -22,6 +22,7 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     var yesterday: Date!
     var daybeforeYesterday: Date!
     
+    // 
     var today_date_rounded: Date!
     var yesterday_date_rounded: Date!
     var daybeforeYesterday_date_rounded: Date!
@@ -35,15 +36,24 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     var date: Date!
     var dateData: Date!
     
-    var dateYest: Date!
-    var date2days: Date!
+    var color2: UIColor!
     
-    var date_rounded: Date!
-    var dateYest_rounded: Date!
-    var date2days_rounded: Date!
+//    var dateYest: Date!
+//    var date2days: Date!
+//
+//    var date_rounded: Date!
+//    var dateYest_rounded: Date!
+//    var date2days_rounded: Date!
+//
+//    var dateYestWeight: Double!
+//    var date2daysWeight: Double!
     
-    var dateYestWeight: Double!
-    var date2daysWeight: Double!
+    @IBOutlet var waterView: UIImageView!
+    
+    var waterImage1:UIImage = UIImage(named: "empty")!
+    var waterImage2:UIImage = UIImage(named: "water2")!
+    var waterImage3:UIImage = UIImage(named: "water3")!
+    var waterImage4:UIImage = UIImage(named: "full")!
     
     
     lazy var dateFormatter: DateFormatter = {
@@ -62,6 +72,8 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.delegate = self
+        
+
         
         calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
         
@@ -86,6 +98,19 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         // today_dateから年月日のみ抽出する -> 2017/07/12となる
         yesterday_date_rounded = roundDate(yesterday, calendar: calendar)
         daybeforeYesterday_date_rounded = roundDate(daybeforeYesterday, calendar: calendar)
+        
+        let waterCount = Weight.waterSelect(from: today_date_rounded)
+        print("水\(waterCount)")
+        
+        if waterCount == 1 {
+            waterView.image = waterImage1
+        }else if waterCount == 2 {
+            waterView.image = waterImage2
+        }else if waterCount == 3 {
+            waterView.image = waterImage3
+        }else if waterCount == 4 {
+            waterView.image = waterImage4
+        }
 
         
         print ("yesterday\(yesterday_date_rounded)")
@@ -106,25 +131,27 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         var yesterdayWeight: Double?
         var daybeforeYesterdayWeight: Double?
         print("yesterdayWeight\(yesterdayWeight)")
-        
+
         //doubleがはいる．ここでバグ
         yesterdayWeight = Weight.select(from: yesterday_date_rounded)
         print(yesterdayWeight)
         var weightYest: Double!
-        
+
         daybeforeYesterdayWeight = Weight.select(from: daybeforeYesterday_date_rounded)
 
         print("yesterdayweight")
         print(yesterdayWeight)
         print("yesterdayweight2")
         print(daybeforeYesterdayWeight)
-        
+
         if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
             self.view.backgroundColor = UIColor.darkGray
+//            color2 = UIColor.darkGray
         } else if (yesterdayWeight! < daybeforeYesterdayWeight!) {
             self.view.backgroundColor = UIColor(hex: "fcbae6")
+//            color2 = UIColor(hex: "fcbae6")
         }
-        
+
         if(yesterdayWeight != nil && daybeforeYesterdayWeight != nil){
             if (yesterdayWeight! >= daybeforeYesterdayWeight!) {
                 return .blue
@@ -151,11 +178,6 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
     }
     
     //カレンダーの数字の色を変える（その日とその日の前の日のweightを比べる）
-    var colorForDayLabelInMonth: UIColor{
-        return color
-        
-    }
-    
     @IBAction func next(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toWeight", sender: dateData)
     }
@@ -187,6 +209,11 @@ class CalenderViewController: UIViewController, JBDatePickerViewDelegate  {
         return JBFont(name: "Marker Felt", size: .medium)
         
     }
+//    
+//    var colorForDayLabelInMonth: UIColor {
+//        return color2
+//    }
+
 
 
 

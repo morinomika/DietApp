@@ -15,12 +15,12 @@ class GraphViewController: UIViewController {
     var weight: Double!
     @IBOutlet var weightLabel: UILabel!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         weightLabel.text = String(weight)
-        // Do any additional setup after loading the view.
 
+    
     }
-
 }
 

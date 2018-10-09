@@ -105,30 +105,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="体重" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEj-lU-IA0">
-                                <rect key="frame" x="166" y="197" width="43" height="21"/>
+                                <rect key="frame" x="164" y="75" width="43" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBP-zo-de7">
-                                <rect key="frame" x="209" y="197" width="20" height="26"/>
+                                <rect key="frame" x="204" y="75" width="20" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efg-cW-eb6">
-                                <rect key="frame" x="107" y="314" width="160" height="38"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7E-oo-NCD">
+                                <rect key="frame" x="67" y="539" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                <state key="normal" title="saved succesfully!">
-                                    <color key="titleColor" red="1" green="0.38053220630000001" blue="0.8055065736" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9Ch-Wy-ma3" kind="show" id="EKP-sN-LNM"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efg-cW-eb6">
+                                        <rect key="frame" x="40" y="45" width="160" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                        <state key="normal" title="saved succesfully!">
+                                            <color key="titleColor" red="1" green="0.38053220630000001" blue="0.8055065736" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="9Ch-Wy-ma3" kind="show" id="EKP-sN-LNM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fXy-Nw-IbE"/>
@@ -140,6 +147,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHI-A5-Hqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1781.5999999999999" y="132.68365817091455"/>
+        </scene>
+        <!--Graph2 View Controller-->
+        <scene sceneID="yOo-OK-vm2">
+            <objects>
+                <viewController id="tXC-pm-ddE" customClass="Graph2ViewController" customModule="DietApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dRX-84-n3D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Abc-yD-TZI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="la7-3L-idG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-729" y="133"/>
         </scene>
         <!--Calender View Controller-->
         <scene sceneID="xTp-qi-8He">
@@ -163,11 +185,24 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="toWeight" id="56e-5G-ORl"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-J5-31T">
+                                <rect key="frame" x="279" y="563" width="80" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERQ-iF-cFd">
+                                <rect key="frame" x="16" y="578" width="83" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="chart.png"/>
+                                <connections>
+                                    <segue destination="tXC-pm-ddE" kind="show" id="fRu-z4-0Y9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mlt-Mf-SvX"/>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="ign-F4-3Yi" id="2NS-K3-q1E"/>
+                        <outlet property="waterView" destination="24Z-J5-31T" id="bur-1X-RYK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLK-BL-Sf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,6 +211,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.png" width="256" height="256"/>
         <image name="empty.png" width="514" height="752"/>
         <image name="save.png" width="1308" height="1188"/>
     </resources>
